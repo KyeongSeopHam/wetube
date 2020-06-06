@@ -3,22 +3,18 @@ import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import { userRouter } from "./router";
-
+import userRouter from "./routers/userRouter";
+import videoRouter from "./routers/videoRouter";
+import globalRouter from "./routers/globalRouter";
+import routes from "./routes";
 const app = express();
 
-const handleHome = (req, res) => res.send("Hello from my as");
-
-const handleProfile = (req, res) => res.send("You are on my profile");
-
 app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morgan("dev"));
 
-app.get("/", handleHome);
+app.use(routes.home, globalRouter);
+app.use(routes.users, userRouter);
+app.use(routes.videos, videoRouter);
 
-app.get("/profile", handleProfile);
-app.use("/user", userRouter);
 export default app; // 누군가 내 파일을 불러올떄(import )  app obj을 주겠다는거
