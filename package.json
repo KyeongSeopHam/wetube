@@ -22,6 +22,9 @@
     "start": "nodemon --exec babel-node init.js --delay 2"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.1.0",
+    "@typescript-eslint/parser": "^3.1.0",
+    "eslint": "^7.2.0",
     "nodemon": "^2.0.4"
   }
 }
